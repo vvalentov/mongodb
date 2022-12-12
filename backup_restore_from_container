@@ -1,0 +1,5 @@
+Backup
+sudo docker exec -i $(docker ps -f name=db-mongo.1 -q)  sh -c 'mongodump --username=mongo --gzip --password=password --forceTableScan --archive' >  mongo-$(date +%d-%m).dump.gz
+
+Restore
+docker exec -i $(docker ps -f name=db-mongo.1. -q) sh -c 'mongorestore --gzip --username=mongo --password=password --drop --archive' < mongo-$(date +%d-%m).dump.gz
